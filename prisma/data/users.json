@@ -1,0 +1,23 @@
+[
+    {
+        "id": "80ba6e8b-599f-4fbb-83fa-403cc2b92f6e",
+        "email": "test1@google.com",
+        "password": "$2a$10$5/2xowOA/JQL4820gXezKuN9MYW2H1HU7lAGMl87KTuioOr2weOi.",
+        "fullName": "Juan Carlos",
+        "isActive": true,
+        "roles": [
+            "admin"
+        ]
+    },
+    {
+        "id": "c0354a21-79ea-453b-8e86-f52b57a250fd",
+        "email": "test2@google.com",
+        "password": "$2a$10$dQSjafvbKY5tOucAdYxJQOs48fHYtmJsd/vt2b/1Cmvb4m350Z/JG",
+        "fullName": "María Solano",
+        "isActive": true,
+        "roles": [
+            "user",
+            "super"
+        ]
+    }
+]
