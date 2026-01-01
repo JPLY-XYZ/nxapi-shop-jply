@@ -1,5 +1,7 @@
 # API Shop
 
+This is a simple API for a shop application.
+
 [API Shop](https://nxapi-shop.vercel.app)
 
 ## Models
@@ -19,18 +21,19 @@
 
 ## Endpoints
 
+- POST /api/products
+
 - GET /api/products
 - GET /api/products/:idOrSlug
 - GET /api/products/all/:term
 
-- POST /api/products
-
-- PUT /api/products/:id
+- PATCH /api/products/:id
 - DELETE /api/products/:id
 
 
 - POST /api/auth/register
 - POST /api/auth/login
+- GET /api/auth/check-status
 
 
 ## Tech Stack
@@ -78,5 +81,21 @@ npm run seed
 ```bash
 npm run dev
 ```
-            
 
+## Build
+
+```bash
+npm run build
+npm run start
+```
+
+## Inspiration
+
+This project was inspired by [nest-teslo-shop](https://github.com/Klerith/nest-teslo-shop) developed by [Fernando Herrera](https://github.com/Klerith) using the NestJS framework.
+
+My project uses NextJS instead of NestJS.😉
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
