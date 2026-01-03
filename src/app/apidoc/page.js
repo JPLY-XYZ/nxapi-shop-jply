@@ -24,7 +24,7 @@ function SwaggerDocs() {
 
     useEffect(() => {
         SwaggerUI({
-            url: "/swagger.json",
+            url: "/swagger.json", // Especificación en archivo /public/swagger.json
             domNode: uiRef.current,
             layout: "BaseLayout"
         });
