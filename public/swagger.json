@@ -53,16 +53,16 @@
                         "default": 0
                     },
                     "sizes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
                         "example": [
                             "M",
                             "XL",
                             "XXL"
                         ],
-                        "description": "Product sizes",
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
+                        "description": "Product sizes"
                     },
                     "gender": {
                         "type": "string",
