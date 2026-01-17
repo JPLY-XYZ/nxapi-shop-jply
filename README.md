@@ -21,6 +21,14 @@ This is a simple API for a shop application.
 
 ## Endpoints
 
+### Auth
+
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `GET  /api/auth/check-status`
+
+### Products
+
 - `POST   /api/products`
 - `GET    /api/products`
 - `GET    /api/products/:idOrSlug`
@@ -28,18 +36,11 @@ This is a simple API for a shop application.
 - `PATCH  /api/products/:id`
 - `DELETE /api/products/:id`
 
----
-
-- `POST /api/auth/register`
-- `POST /api/auth/login`
-- `GET  /api/auth/check-status`
-
----
+### Files
 
 - `POST /api/files/product`
 - `GET  /api/files/product`
 - `GET  /api/files/product/:imageName`
-
 
 
 ## Tech Stack

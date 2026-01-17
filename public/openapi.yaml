@@ -223,7 +223,7 @@ components:
         public_id:
           type: string
           nullable: false
-          example: 8528839-00-A_2_sbeihu
+          example: file_gvfsgc
         format:
           type: string
           nullable: false
