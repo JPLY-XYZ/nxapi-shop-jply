@@ -36,8 +36,10 @@ This is a simple API for a shop application.
 
 ---
 
-- `GET  /api/files/product/:imageName`
 - `POST /api/files/product`
+- `GET  /api/files/product`
+- `GET  /api/files/product/:imageName`
+
 
 
 ## Tech Stack

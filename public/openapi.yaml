@@ -462,45 +462,7 @@ paths:
         "500":
           description: Internal server error
 
-  /api/files/product/{imageName}:
-    get:
-      summary: Get product image
-      tags:
-        - Files - Get and Upload
-      parameters:
-        - name: imageName
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: OK
-          # content:
-          #   application/json:
-          #     schema:
-          #       $ref: "#/components/schemas/ImageInfo"
-        "404":
-          description: Image not found
-
   /api/files/product:
-    get:
-      summary: List images
-      tags:
-        - Files - Get and Upload
-      parameters:
-        - name: limit
-          in: query
-          required: true
-          description: How many rows do you need
-          schema:
-            type: number
-            default: 10
-      responses:
-        "200":
-          description: OK
-        "500":
-          description: Internal server error          
     post:
       summary: Upload product image
       tags:
@@ -535,3 +497,41 @@ paths:
           description: Unauthorized. Token expired or invalid.
         "500":
           description: Internal server error
+    get:
+      summary: List images
+      tags:
+        - Files - Get and Upload
+      parameters:
+        - name: limit
+          in: query
+          required: true
+          description: How many rows do you need
+          schema:
+            type: number
+            default: 10
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal server error  
+
+  /api/files/product/{imageName}:
+    get:
+      summary: Get product image
+      tags:
+        - Files - Get and Upload
+      parameters:
+        - name: imageName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          # content:
+          #   application/json:
+          #     schema:
+          #       $ref: "#/components/schemas/ImageInfo"
+        "404":
+          description: Image not found
