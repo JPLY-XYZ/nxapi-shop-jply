@@ -19,14 +19,15 @@ info:
     
     ## **Imágenes**
     - Subir imágenes en cualquier formato (`image/*`)
-    - Consultar imágenes subidas
-    - Manejo de metadatos en JSON
+    - Consultar imágenes subidas y sus metadatos
+    - Actualizar imágenes subidas
+    - Eliminar imágenes subidas
 
     > **NOTA:**
     > Las siguientes propiedades deben tener **valores únicos**: `title` y `slug` de un producto, así como el `email` de un usuario.
     >
-    > - Si al introducir o modificar un producto obtienes un **error 409**, es porque ya existe un producto con el mismo `title` o `slug`.
-    > - Si al registrar un usuario obtienes un **error 409**, es porque ya existe un usuario con el mismo `email`.
+    > - Si al introducir o modificar un producto obtienes un **código 409**, es porque ya existe un producto con el mismo `title` o `slug`.
+    > - Si al registrar un usuario obtienes un **código 409**, es porque ya existe un usuario con el mismo `email`.
 
     Para más información, visita [nuestro repositorio](https://github.com/jamj2000/nxapi-shop).
   version: "1.0.0"
@@ -370,6 +371,23 @@ paths:
         "500":
           description: Internal server error
 
+  /api/products/all/{term}:
+    get:
+      summary: Search products
+      tags:
+        - Products
+      parameters:
+        - name: term
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Search results
+        "500":
+          description: Internal server error
+
   /api/products/{idOrSlug}:
     get:
       summary: Find product by ID or slug
@@ -388,23 +406,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Product"
-        "500":
-          description: Internal server error
-
-  /api/products/all/{term}:
-    get:
-      summary: Search products
-      tags:
-        - Products
-      parameters:
-        - name: term
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Search results
         "500":
           description: Internal server error
 
@@ -535,3 +536,53 @@ paths:
           #       $ref: "#/components/schemas/ImageInfo"
         "404":
           description: Image not found
+    put:
+      summary: Change product image
+      tags:
+        - Files - Get and Upload
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: imageName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          image/*:   # Cualquier imagen
+            schema:
+              type: string
+              format: binary
+              description: "Archivo de imagen (PNG, JPEG, GIF, WebP, etc.)"
+      responses:
+        "201":
+          description: Image updated or created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ImageInfo"
+        "401":
+          description: Unauthorized. Token expired or invalid.
+        "500":
+          description: Internal server error              
+    delete:
+      summary: Delete product image
+      tags:
+        - Files - Get and Upload
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: imageName
+          in: path
+          required: true
+          schema:
+            type: string   
+      responses:
+        "200":
+          description: Image deleted successfully
+        "401":
+          description: Unauthorized. Token expired or invalid.
+        "500":
+          description: Internal server error             

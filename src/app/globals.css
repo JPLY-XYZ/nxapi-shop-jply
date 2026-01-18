@@ -38,10 +38,9 @@ blockquote {
 }
 
 blockquote::before {
-  content: "🛈";
+  content: "🔔";
   display: inline-block;
-  color: blue;
-  font-size: 2em;
-  line-height: 1em;
+  font-size: 1.2em;
+
   vertical-align: -0.25em;
 }
