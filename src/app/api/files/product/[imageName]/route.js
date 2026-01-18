@@ -32,22 +32,17 @@ export async function GET(request, { params }) {
             },
         });
 
-        // return NextResponse.json(
-        //     result,
-        //     { status: 200 }
-        // )
-    } catch (error) {
-        if (error.http_code === 404) {
+    } catch (e) {
+        if (e.error.http_code === 404) {
             return NextResponse.json(
                 { error: "Image not found" },
                 { status: 404 }
             );
         }
-        // throw error; // other error
-        console.log(error.message);
+
         return NextResponse.json(
-            { error: "Internal server error" },
-            { status: 500 }
+            { error: e.error.message },
+            { status: e.error.http_code }
         );
     }
 }
@@ -136,10 +131,31 @@ export async function PUT(request, { params }) {
 
 
 export async function DELETE(request, { params }) {
+    const authHeader = request.headers.get("Authorization");
     const { imageName } = await params
     const publicId = path.parse(imageName).name;
 
+    if (!authHeader) {
+        return NextResponse.json(
+            { error: "Forbidden" },
+            { status: 403 }
+        );
+    }
+
+    const token = authHeader.split(' ')[1] || authHeader;
+
     try {
+        // VERIFICAMOS TOKEN
+        const { id } = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await prisma.user.findUnique({ where: { id } });
+
+        if (!user) {
+            return NextResponse.json(
+                { error: "Unauthorized. Token expired or invalid." },
+                { status: 401 }
+            );
+        }
+
         await cloudinary.uploader.destroy(publicId, { invalidate: true });
         return NextResponse.json(
             { message: "Image deleted successfully" },
