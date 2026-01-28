@@ -38,10 +38,11 @@ This is a simple API for a shop application.
 
 ### Files
 
-- `POST /api/files/product`
-- `GET  /api/files/product`
-- `GET  /api/files/product/:imageName`
-
+- `POST   /api/files/product`
+- `GET    /api/files/product`
+- `GET    /api/files/product/:imageName`
+- `PUT    /api/files/product/:imageName`
+- `DELETE /api/files/product/:imageName`
 
 ## Tech Stack
 
