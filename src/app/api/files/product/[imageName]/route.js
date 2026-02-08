@@ -12,7 +12,7 @@ export async function GET(request, { params }) {
 
     try {
         //const result = await cloudinary.api.resource("shop/" + imageName);
-        const result = await cloudinary.api.resource("shop/" + imageName);
+        const result = await cloudinary.api.resource(imageName);
         const res = await fetch(result.secure_url);
 
         if (!res.ok) {
