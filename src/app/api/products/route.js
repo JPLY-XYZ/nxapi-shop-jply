@@ -5,6 +5,10 @@ import jwt from "jsonwebtoken";
 
 
 export async function GET(request) {
+
+    const offset = +request.nextUrl.searchParams.get("offset") || 0;
+    const limit = +request.nextUrl.searchParams.get("limit") || 10;
+
     const select = {
         id: true,
         title: true,
@@ -28,21 +32,23 @@ export async function GET(request) {
     };
 
     try {
-        // Eliminamos 'take' y 'skip' para traer todo
-        const products = await prisma.product.findMany({ select });
+        const products = await prisma.product.findMany({ select, take: limit, skip: offset });
 
         const formattedProducts = products.map(product => ({
             ...product,
             images: product.images.map(image => image.url),
         }));
 
-        return NextResponse.json(formattedProducts, { status: 200 });
+        return NextResponse.json(
+            formattedProducts,
+            { status: 200 }
+        );
     } catch (error) {
         console.log(error);
         return NextResponse.json(
             { error: "Internal server error" },
             { status: 500 }
-        );
+        )
     }
 }
 

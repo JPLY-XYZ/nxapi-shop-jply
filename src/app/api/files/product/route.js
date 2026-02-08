@@ -71,7 +71,7 @@ export async function POST(request) {
                     gravity: "center",
                     invalidate: true,
                     use_filename: true,
-                    unique_filename: true,
+                    unique_filename: true, // public ID: false -> imagename, true -> imagename_z7ybio
                 },
                 (error, result) => {
                     if (error) {
