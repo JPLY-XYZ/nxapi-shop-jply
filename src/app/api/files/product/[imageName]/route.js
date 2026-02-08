@@ -12,7 +12,7 @@ export async function GET(request, { params }) {
     const publicId = path.parse(imageName).name;
 
     try {
-        const result = await cloudinary.api.resource(publicId);
+        const result = await cloudinary.api.resource("shop/" + publicId);
         const res = await fetch(result.secure_url);
 
         if (!res.ok) {
