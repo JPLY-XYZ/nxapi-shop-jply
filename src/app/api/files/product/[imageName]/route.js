@@ -11,6 +11,7 @@ export async function GET(request, { params }) {
     const { imageName } = await params
 
     try {
+        //const result = await cloudinary.api.resource("shop/" + imageName);
         const result = await cloudinary.api.resource("shop/" + imageName);
         const res = await fetch(result.secure_url);
 
