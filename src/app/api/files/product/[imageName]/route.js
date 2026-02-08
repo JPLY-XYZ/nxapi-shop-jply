@@ -9,10 +9,9 @@ const FOLDER = 'shop';
 
 export async function GET(request, { params }) {
     const { imageName } = await params
-    const publicId = path.parse(imageName).name;
 
     try {
-        const result = await cloudinary.api.resource("shop/" + publicId);
+        const result = await cloudinary.api.resource("shop/" + imageName);
         const res = await fetch(result.secure_url);
 
         if (!res.ok) {
