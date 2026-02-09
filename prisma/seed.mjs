@@ -50,12 +50,12 @@ async function main() {
             // Si el archivo se llama "foto1", result.public_id será "shop/foto1"
             await prisma.productImage.create({
                 data: {
-                    url: result.public_id.split('/').pop(), // Guarda esto para usarlo en el GET
+                    url: "shop%2F" + result.public_id.split('/')[1], // Guarda esto para usarlo en el GET
                     productId: img.productId,
                 },
             });
 
-            console.log(`✅ Subida: ${result.public_id.split('/').pop()}`);
+            console.log(`✅ Subida: ${result.public_id}`);
         } catch (error) {
             console.error(`❌ Error con ${img.url}:`, error);
         }
